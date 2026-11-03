@@ -1,0 +1,54 @@
+:root {
+  --bg: #0b1220;
+  --bg-elevated: #121a2b;
+  --bg-soft: #182236;
+  --ink: #e8eef8;
+  --muted: #8b9bb4;
+  --line: rgba(148, 163, 184, 0.18);
+  --teal: #2dd4bf;
+  --teal-dim: rgba(45, 212, 191, 0.16);
+  --amber: #f5c14a;
+  --steel: #7dd3fc;
+  --rose: #fb7185;
+  --spx: #94a3b8;
+  --font-sans: "IBM Plex Sans", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --radius: 10px;
+  --shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  color: var(--ink);
+  background:
+    radial-gradient(1200px 600px at 10% -10%, rgba(45, 212, 191, 0.12), transparent 55%),
+    radial-gradient(900px 500px at 90% 0%, rgba(125, 211, 252, 0.08), transparent 50%),
+    linear-gradient(180deg, #0b1220 0%, #0a101c 100%);
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.mono {
+  font-family: var(--font-mono);
+}

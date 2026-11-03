@@ -1,0 +1,29 @@
+.panel {
+  position: relative;
+  min-height: min(62vh, 560px);
+  padding: 1rem 0.5rem 0.5rem;
+  border-bottom: 1px solid var(--line);
+  animation: fade 480ms ease both;
+}
+
+.title {
+  margin: 0 0 0.35rem 1rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.chartWrap {
+  width: 100%;
+  height: min(56vh, 500px);
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

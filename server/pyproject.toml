@@ -1,0 +1,34 @@
+[project]
+name = "rlportfolio"
+version = "0.1.0"
+description = "Deep RL vs MVO portfolio allocation (Sood et al. FinPlan'23)"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi>=0.162.0",
+    "gymnasium>=1.0.0",
+    "httpx>=0.28.1",
+    "pyfolio-reloaded>=0.10.2",
+    "pyportfolioopt>=1.6.0",
+    "scikit-learn>=1.9.1",
+    "stable-baselines3>=2.9.2",
+    "torch>=2.15.0",
+    "uvicorn[standard]>=0.54.0",
+    "yfinance>=1.7.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["rlportfolio"]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.2.0",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]

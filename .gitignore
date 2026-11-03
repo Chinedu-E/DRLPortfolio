@@ -1,0 +1,50 @@
+# OS / editor
+.DS_Store
+.cursor/
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.sw?
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Local paper copy (cite arXiv in README instead)
+rlport.pdf
+
+# Python
+__pycache__/
+*.py[oc]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+build/
+dist/
+wheels/
+.venv/
+venv/
+
+# Server artifacts (regenerated locally)
+server/.venv/
+server/data/
+server/models/
+server/results/
+server/__pycache__/
+server/.pytest_cache/
+
+# Node / frontend
+node_modules/
+web/node_modules/
+web/dist/
+web/dist-ssr/
+*.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Logs
+logs/
+*.log
