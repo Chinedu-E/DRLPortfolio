@@ -29,6 +29,15 @@ dev = [
     "pytest>=9.2.0",
 ]
 
+# Prefer CPU wheels so Docker / Railway images stay lean (no CUDA toolkit).
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+[tool.uv.sources]
+torch = { index = "pytorch-cpu" }
+
 [tool.pytest.ini_options]
 pythonpath = ["."]
 testpaths = ["tests"]

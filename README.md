@@ -79,6 +79,35 @@ Paper-scale training uses much larger `--timesteps` / `--n-envs` / multi-seed se
 | API | FastAPI, Uvicorn |
 | UI | React 19, Vite, TanStack Query, Recharts |
 
+## Deploy (Railway)
+
+One Railway **project**, two services from the same GitHub repo:
+
+| Service | Root Directory | Builder | Runtime |
+|---------|----------------|---------|---------|
+| `api` | `server/` | Dockerfile | Uvicorn on `$PORT` |
+| `web` | `web/` | Nixpacks | Vite build → `serve` SPA on `$PORT` |
+
+### Setup
+
+1. Create a Railway project → **Deploy from GitHub** → this repository.
+2. **api** service: Root Directory `server`, Builder Dockerfile. Generate a public domain.
+3. **web** service: Root Directory `web`. Generate a public domain.
+4. Set environment variables (then redeploy so they take effect):
+
+| Service | Variable | When | Example |
+|---------|----------|------|---------|
+| `api` | `CORS_ORIGINS` | runtime | `https://<web>.up.railway.app` |
+| `web` | `VITE_API_URL` | **build** | `https://<api>.up.railway.app` |
+
+`VITE_API_URL` is inlined at Vite build time — change it, then **rebuild** the web service. Locally, leave it unset so the Vite `/api` proxy is used.
+
+### Runtime notes
+
+- First API boot runs `build_dataset()` (Yahoo Finance download). Cold start can take several minutes; market data lands under `server/data/` inside the container (ephemeral unless you attach a volume later).
+- Trained PPO checkpoints under `server/models/` are not committed. Without them the dashboard marks PPO as unavailable; **MVO + S&P 500** still work for the portfolio demo.
+- Health check: `GET /api/health` (configured in `server/railway.toml`).
+
 ## Citation
 
 ```bibtex
