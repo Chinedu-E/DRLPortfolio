@@ -86,7 +86,7 @@ One Railway **project**, two services from the same GitHub repo:
 | Service | Root Directory | Builder | Runtime |
 |---------|----------------|---------|---------|
 | `api` | `server/` | Dockerfile | Uvicorn on `$PORT` |
-| `web` | `web/` | Nixpacks | Vite build → `serve` SPA on `$PORT` |
+| `web` | `web/` | Dockerfile | Vite build → `serve` SPA on `$PORT` |
 
 ### Setup
 
