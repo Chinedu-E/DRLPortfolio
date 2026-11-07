@@ -95,6 +95,37 @@ Open the dashboard, pick a range (presets: **2012**, **2020**, **Full OOS**), an
 cd server
 uv run python main.py train --window 0 --timesteps 4096 --n-envs 2 --dummy-vec
 ```
+### Full training
+```bash
+cd server
+uv sync
+uv run python main.py data
+mkdir -p results
+
+PREV=""
+for w in $(seq 0 9); do
+  if [ -n "$PREV" ]; then
+    uv run python main.py train \
+      --window "$w" \
+      --timesteps 7500000 \
+      --n-envs 10 \
+      --seeds 0,1,2,3,4 \
+      --pretrained "$PREV" \
+      --device auto | tee "results/train_window${w}.log"
+  else
+    uv run python main.py train \
+      --window "$w" \
+      --timesteps 7500000 \
+      --n-envs 10 \
+      --seeds 0,1,2,3,4 \
+      --device auto | tee "results/train_window${w}.log"
+  fi
+  PREV=$(awk -F'Saved: ' '/Saved: /{print $2}' "results/train_window${w}.log" | tail -1)
+  echo "Window $w best checkpoint: $PREV"
+done
+
+uv run python main.py backtest --windows all --device auto
+```
 
 Paper-scale training uses much larger `--timesteps` / `--n-envs` / multi-seed settings (see CLI). Without a matching checkpoint, the dashboard still runs **MVO + S&P 500** and marks PPO as unavailable.
 
