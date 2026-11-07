@@ -26,8 +26,8 @@ export function Controls({
   return (
     <header className={styles.bar}>
       <div className={styles.brandBlock}>
-        <h1 className={styles.brand}>RLPortfolio</h1>
-        <p className={styles.tagline}>Quant research console · PPO vs MVO vs S&amp;P 500</p>
+        <h1 className={styles.brand}>Deep Reinforcement Learning Portfolio</h1>
+        <p className={styles.tagline}>Results console · PPO vs MVO vs S&amp;P 500</p>
       </div>
       <div className={styles.controls}>
         <label className={styles.field}>
